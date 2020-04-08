@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebApp</title>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+        <script src="http://127.0.0.1:8089/static/scripts/main.js"></script>
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-dark bg-primary">
+            <a href="#" class="navbar-brand">Учебный пример</a>
+        </nav>
+
+        <div class="container">
+            <div class="col-md-5 m-auto"><nav>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#tab-people" data-toggle="tab">People</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tab-get" data-toggle="tab">GET</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tab-post" data-toggle="tab">POST</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tab-put" data-toggle="tab">PUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tab-delete" data-toggle="tab">DELETE</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-people">
+                        <form method="post" id="fpeople">                
+                            <div class="form-group">                
+                                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Get all people</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane fade" id="tab-get">
+                        <form method="post" id="fget">
+                            
+                            <div class="form-group">
+                        
+                                <div class="form-group">
+                                    <label>ID</label>
+                                    <input type="text" name="id" class="form-control">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Get by id</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane fade" id="tab-post">
+                        <form method="post" id="fpost">
+                            
+                            <div class="form-group">
+                        
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" name="name" class="form-control">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Surname</label>
+                                    <input type="text" name="surname" class="form-control">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Create person</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane fade" id="tab-put">
+                        <form method="post" id="fput">
+                            
+                            <div class="form-group">
+                        
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" name="name" class="form-control">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Surname</label>
+                                    <input type="text" name="surname" class="form-control">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Update person</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="tab-delete">
+                        <form method="post" id="fdelete">
+                            
+                            <div class="form-group">
+                        
+                                <div class="form-group">
+                                    <label>ID</label>
+                                    <input type="text" name="id" class="form-control">
+                                </div>        
+
+                                <button type="submit" class="btn btn-primary">Delete person</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+
+                </div>
+                </nav></div>
+
+                <div class="col-md-8 m-auto">
+
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Surname</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        </table>
+                </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>
