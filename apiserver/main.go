@@ -7,8 +7,10 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strconv"
 	"time"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
@@ -18,37 +20,48 @@ type Person struct {
 	Surname string `json:"surname"`
 }
 
-type people []*Person
+type people map[int]*Person
 
-var People people
+var (
+	People   people
+	idPerson = 4 // count id pesons
+)
 
 func init() {
-	People = append(People,
-		&Person{
-			ID:      0,
-			Name:    "Михаил",
-			Surname: "Никишкин",
-		},
-		&Person{
-			ID:      1,
-			Name:    "",
-			Surname: "Никишкин",
-		},
-		&Person{
-			ID:      2,
-			Name:    "Михаил",
-			Surname: "Никишкин",
-		},
-		&Person{
-			ID:      3,
-			Name:    "Михаил",
-			Surname: "Никишкин"},
-		&Person{
-			ID:      4,
-			Name:    "Михаил",
-			Surname: "Никишкин",
-		},
-	)
+
+	//
+
+	People = make(map[int]*Person)
+
+	People[0] = &Person{
+		ID:      0,
+		Name:    "Михаил",
+		Surname: "Никишкин",
+	}
+
+	People[1] = &Person{
+		ID:      1,
+		Name:    "Павел",
+		Surname: "Новокщёнов",
+	}
+
+	People[2] = &Person{
+		ID:      2,
+		Name:    "Маша",
+		Surname: "Бард",
+	}
+
+	People[3] = &Person{
+		ID:      3,
+		Name:    "Марат",
+		Surname: "Алеев",
+	}
+
+	People[4] = &Person{
+		ID:      4,
+		Name:    "Иван",
+		Surname: "Иванов",
+	}
 }
 
 func main() {
@@ -63,9 +76,13 @@ func main() {
 	router.HandleFunc("/person", handlePersonPUT()).Methods("PUT")
 	router.HandleFunc("/person", handlePersonDELETE()).Methods("DELETE")
 
+	header := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"})
+	method := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"})
+	origins := handlers.AllowedOrigins([]string{"*"})
+
 	srv := http.Server{
 		Addr:    ":9543",
-		Handler: router,
+		Handler: handlers.CORS(header, method, origins)(router),
 	}
 
 	log.Println("Start apiserver, port :9543")
@@ -114,7 +131,16 @@ func handlePersonGET() http.HandlerFunc {
 
 		pid := &req{}
 
-		if err := json.NewDecoder(r.Body).Decode(pid); err != nil {
+		param := r.URL.Query().Get("id")
+
+		if param == "" {
+			responce(w, r, http.StatusBadRequest, nil)
+			return
+		}
+
+		var err error
+		pid.ID, err = strconv.Atoi(param)
+		if err != nil {
 			responceError(w, r, http.StatusBadRequest, err)
 			return
 		}
@@ -147,8 +173,9 @@ func handlePersonPOST() http.HandlerFunc {
 			return
 		}
 
-		per.ID = len(People)
-		People = append(People, per)
+		idPerson++
+		per.ID = idPerson
+		People[per.ID] = per
 
 		responce(w, r, http.StatusAccepted, People)
 
@@ -217,30 +244,18 @@ func responce(w http.ResponseWriter, r *http.Request, code int, data interface{}
 // People mathod type
 
 func (p people) FindByID(id int) *Person {
-	for _, val := range p {
-		if val.ID == id {
-			return val
-		}
-	}
 
-	return nil
+	per, ok := p[id]
+	if !ok {
+		return nil
+	}
+	return per
 }
 
 func (p people) UpdatePerson(per *Person) {
-	for _, val := range p {
-		if val.ID == per.ID {
-			val.Name = per.Name
-			val.Surname = per.Surname
-			return
-		}
-	}
+	p[per.ID] = per
 }
 
 func (p people) DeletePerson(id int) {
-	for i := 0; i < len(p); i++ {
-		if p[i].ID == id {
-			p[i] = nil
-			return
-		}
-	}
+	delete(p, id)
 }

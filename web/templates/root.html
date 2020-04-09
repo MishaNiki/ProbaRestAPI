@@ -5,9 +5,7 @@
         <meta charset="utf-8">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
         <script src="http://127.0.0.1:8089/static/scripts/main.js"></script>
 
     </head>
@@ -38,7 +36,7 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-people">
-                        <form method="post" id="fpeople">                
+                        <form id="fpeople">                
                             <div class="form-group">                
                                 <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Get all people</button>
                             </div>
@@ -46,7 +44,7 @@
                     </div>
 
                     <div class="tab-pane fade" id="tab-get">
-                        <form method="post" id="fget">
+                        <form id="fget">
                             
                             <div class="form-group">
                         
@@ -61,18 +59,18 @@
                     </div>
 
                     <div class="tab-pane fade" id="tab-post">
-                        <form method="post" id="fpost">
+                        <form id="fpost">
                             
                             <div class="form-group">
                         
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" name="name" class="form-control">
+                                    <input type="text" name="name" id="pname"  class="form-control">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label>Surname</label>
-                                    <input type="text" name="surname" class="form-control">
+                                    <input type="text" name="surname" id="psurname" class="form-control">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Create person</button>
@@ -81,18 +79,23 @@
                     </div>
 
                     <div class="tab-pane fade" id="tab-put">
-                        <form method="post" id="fput">
+                        <form id="fput">
                             
                             <div class="form-group">
                         
                                 <div class="form-group">
+                                    <label>ID</label>
+                                    <input type="text" name="id" id="putid" class="form-control">
+                                </div>
+
+                                <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" name="name" class="form-control">
+                                    <input type="text" name="name" id="putname" class="form-control">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label>Surname</label>
-                                    <input type="text" name="surname" class="form-control">
+                                    <input type="text" name="surname" id="putsurname" class="form-control">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Update person</button>
@@ -102,13 +105,13 @@
 
 
                     <div class="tab-pane fade" id="tab-delete">
-                        <form method="post" id="fdelete">
+                        <form id="fdelete">
                             
                             <div class="form-group">
                         
                                 <div class="form-group">
                                     <label>ID</label>
-                                    <input type="text" name="id" class="form-control">
+                                    <input type="text" name="id" id="did" class="form-control">
                                 </div>        
 
                                 <button type="submit" class="btn btn-primary">Delete person</button>
@@ -120,6 +123,8 @@
                 </div>
                 </nav></div>
 
+                <div class="col-md-8 m-auto log"></div>
+
                 <div class="col-md-8 m-auto">
 
                     <table class="table">
@@ -130,14 +135,12 @@
                             <th scope="col">Surname</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="per-tab">
                         </tbody>
                         </table>
                 </div>
         </div>
 
-
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </body>
