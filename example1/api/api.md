@@ -2,7 +2,7 @@ Example1 API
 
 **[GET]: /**  - получение списка людей
 
-**type:**application/json
+**type:** application/json
 
 **Responses:**
 ***Code:*** **200** - всё хорошо
@@ -26,7 +26,8 @@ Example1 API
 **[GET]: /person?id=** - найти человека по id
 
 **type:**application/json
- **Params:**
+
+**Params:**
 
 	id : int
 
@@ -50,7 +51,8 @@ Example1 API
 
 **[POST]: /person** - создание нового человка
 
-**type:**application/json
+**type:** application/json
+
 **Reqest:**
 
 ```
@@ -61,7 +63,9 @@ Example1 API
 ```
 
 **Responses:**
+
 ***Code:*** **202** - запись создана
+
 **Body**:
 
 ```
@@ -82,8 +86,8 @@ Example1 API
 
 **[PUT]: /person** -обновление записи
 
-
 **type:**application/json
+
 **Reqest:**
 
 ```
@@ -95,7 +99,9 @@ Example1 API
 ```
 
 **Responses:**
+
 ***Code:*** **200** - запись обновленна
+
 **Body**:
 
 ```
@@ -116,7 +122,8 @@ Example1 API
 
 **[DELETE]: /person** - удаление записи
 
-**type:**application/json
+**type:** application/json
+
 **Reqest:**
 
 ```
@@ -126,7 +133,9 @@ Example1 API
 ```
 
 **Responses:**
+
 ***Code:*** **200** - запись удалена
+
 **Body**:
 
 ```
