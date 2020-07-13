@@ -1,157 +1,147 @@
-<style>
-span {padding: 8px;}
-.method {
-	border-radius: 6px 0px 0px 6px;
-	color: #FFF;
-	min-width: 80px;
+Example1 API
+
+**[GET]: /**  - получение списка людей
+
+**type:**application/json
+
+**Responses:**
+***Code:*** **200** - всё хорошо
+**Body**:
+
+```
+{
+	"int":
+	{
+		"id": int,
+		"name": string,
+		"surname": string
+	},
+	...
 }
-.url {
-	background-color: #D5D5D5;
-	color: #000;
-	border-radius: 0px 6px 6px 0px;
-}
-.get {background-color: #61affe}
-.post {background-color: #49cc90}
-.delete {background-color: #f93e3e}
-.put{background-color: #fca130}
-.patch{background-color: #00b3b3}
-a {text-decoration: none;}
-</style>
-
-# Service Group API
-v 0.0.1
-
-
-<span class="get method"><b>GET</b></span><span class="url"><b>/</b> - получение списка людей</span>
-
->**type:**application/json
-
->**Responses:**
->***Code:*** **200** - всё хорошо
->**Body**:
-
->		{
->			"int":
->				{
->					"id": int,
->					"name": string,
->					"surname": string
->				},
->			...
->		}
->***Code:*** **400** - плохой неверный запрос, ошибка в json
+```
+***Code:*** **400** - плохой неверный запрос, ошибка в json
 
 ---
 
-<span class="get method"><b>GET</b></span><span class="url"><b>/person?id=</b> - найти человека по id</span>
+**[GET]: /person?id=** - найти человека по id
 
->**type:**application/json
-> **Params:**
- 
->		id : int
+**type:**application/json
+ **Params:**
 
->**Responses:**
->***Code:*** **200** - удачный вход в учетную запись
->**Body**:
+	id : int
 
->		{
->			"id": int,
->			"name": string,
->			"surname": string
->		}
+**Responses:**
 
->***Code:*** **400** - плохой неверный запрос, ошибка в json
+***Code:*** **200** - удачный вход в учетную запись
+**Body**:
 
->***Code:*** **404** - человека с таким id не существует
+```
+{
+    "id": int,
+    "name": string,
+    "surname": string
+}
+```
+***Code:*** **400** - плохой неверный запрос, ошибка в json
+
+***Code:*** **404** - человека с таким id не существует
 
 -----
 
-<span class="post method"><b>POST</b></span><span class="url"><b>/person</b> - создание нового человка</span>
+**[POST]: /person** - создание нового человка
 
+**type:**application/json
+**Reqest:**
 
->**type:**application/json
->**Reqest:**
+```
+{
+    "name": string,
+    "surname": string
+}
+```
 
->		{
->			"name": string,
->			"surname": string
->		}
->	
->**Responses:**
->***Code:*** **202** - запись создана
->**Body**:
+**Responses:**
+***Code:*** **202** - запись создана
+**Body**:
 
->		{
->			"int":
->				{
->					"id": int,
->					"name": string,
->					"surname": string
->				},
->			...
->		}
+```
+{
+    "int":
+    {
+        "id": int,
+        "name": string,
+        "surname": string
+    },
+    ...
+}
+```
 
-
->***Code:*** **400** - плохой неверный запрос, ошибка в json
+***Code:*** **400** - плохой неверный запрос, ошибка в json
 
 ---
 
-<span class="put method"><b>PUT</b></span><span class="url"><b>/person</b> -обновление записи </span>
+**[PUT]: /person** -обновление записи
 
 
->**type:**application/json
->**Reqest:**
+**type:**application/json
+**Reqest:**
 
->		{
->			"id" : int
->			"name": string,
->			"surname": string
->		}
->	
->**Responses:**
->***Code:*** **200** - запись обновленна
->**Body**:
+```
+{
+    "id" : int
+    "name": string,
+    "surname": string
+}
+```
 
->		{
->			"int":
->				{
->					"id": int,
->					"name": string,
->					"surname": string
->				},
->			...
->		}
+**Responses:**
+***Code:*** **200** - запись обновленна
+**Body**:
 
+```
+{
+    "int":
+    {
+        "id": int,
+        "name": string,
+        "surname": string
+    },
+    ...
+}
+```
 
->***Code:*** **400** - плохой неверный запрос, ошибка в json
+***Code:*** **400** - плохой неверный запрос, ошибка в json
 
 ----
-	
-<span class="delete method"><b>DELETE</b></span><span class="url"><b>/person</b> - удаление записи</span>
 
->**type:**application/json
->**Reqest:**
+**[DELETE]: /person** - удаление записи
 
->		{
->			"id": int,
->		}
->	
->**Responses:**
->***Code:*** **200** - запись удалена
->**Body**:
+**type:**application/json
+**Reqest:**
 
->		{
->			"int":
->				{
->					"id": int,
->					"name": string,
->					"surname": string
->				},
->			...
->		}
+```
+{
+	"id": int,
+}
+```
 
+**Responses:**
+***Code:*** **200** - запись удалена
+**Body**:
 
->***Code:*** **400** - плохой неверный запрос, ошибка в json
+```
+{
+    "int":
+    {
+        "id": int,
+        "name": string,
+        "surname": string
+    },
+    ...
+}
+```
+
+***Code:*** **400** - плохой неверный запрос, ошибка в json
 
 ---
 
